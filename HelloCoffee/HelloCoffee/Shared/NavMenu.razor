@@ -1,13 +1,55 @@
-﻿<nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav">
+﻿
+@if (LanguageChanger.GetCurrentLan() == "en")
+{
+<nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav">
     <div class="container">
         <a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#">Brand</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="nav navbar-nav mx-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/about">About us</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/store">Store</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/about">About Us</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="products.html">Products</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="store.html">Store</a></li>
+                <li class="nav-item" role="presentation"><a @onclick="changeToArabic" class="nav-link" >العربيه</a></li>
             </ul>
         </div>
     </div>
-</nav>
+</nav>}
+else
+{
+<nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#">Brand</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav mx-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">الرئيسية</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/about">عنا</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="products.html">المنتجات</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="store.html">المتجر</a></li>
+                <li class="nav-item" role="presentation"><a @onclick="changeToEnglish" class="nav-link" >English</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>            }
+
+
+@code{ protected override void OnInitialized()
+    {
+        LanguageChanger.RefreshRequested += refreshMe;
+    }
+
+    private void refreshMe()
+    {
+        this.StateHasChanged();
+    }
+
+    private void changeToEnglish()
+    {
+        LanguageChanger.ChangeCurrentLan("en");
+    }
+
+    private void changeToArabic()
+    {
+        LanguageChanger.ChangeCurrentLan("ar");
+    } }
+

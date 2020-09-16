@@ -1,22 +1,57 @@
 ﻿@page "/About"
 
-    <section class="page-section about-heading">
-        <div class="container">
-            <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="assets/img/about.jpg" />
-            <div class="about-heading-content">
-                <div class="row">
-                    <div class="col-lg-10 col-xl-9 mx-auto">
-                        <div class="bg-faded rounded p-5">
-                            <h2 class="section-heading mb-4"><span class="section-heading-upper">Strong Coffee, Strong Roots</span><span class="section-heading-lower"> About Our Cafe</span></h2>
-                            <p>
-                                Founded in 1987 by the Hernandez brothers, our establishment has been serving up rich coffee sourced from artisan farmers in various regions of South and Central America. We are dedicated to travelling the world, finding the
-                                best coffee, and bringing back to you here in our cafe.
-                            </p>
-                            <p class="mb-0"><span>We guarantee that you will fall in </span><span>lust</span><span> with our decadent blends the moment you walk inside until you finish your last sip. Join us for your daily routine, an outing with friends, or simply just to enjoy some alone time.</span></p>
-                        </div>
+@if (LanguageChanger.GetCurrentLan() == "en")
+{
+<section class="page-section about-heading">
+    <div class="container">
+        <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="assets/img/about.jpg">
+        <div class="about-heading-content">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="bg-faded rounded p-5">
+                        <h2 class="section-heading mb-4"><span class="section-heading-upper">Strong Coffee, Strong Roots</span><span class="section-heading-lower">&nbsp;About Our Cafe</span></h2>
+                        <p>
+                            Founded in 1987 by the Hernandez brothers, our establishment has been serving up rich coffee sourced from artisan farmers in various regions of South and Central America. We are dedicated to travelling the world, finding the
+                            best coffee, and bringing back to you here in our cafe.
+                        </p>
+                        <p class="mb-0"><span>We guarantee that you will fall in&nbsp;</span><span>lust</span><span>&nbsp;with our decadent blends the moment you walk inside until you finish your last sip. Join us for your daily routine, an outing with friends, or simply just to enjoy some alone time.</span></p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>}
+else
+{
+<section class="page-section about-heading">
+    <div class="container">
+        <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="assets/img/about.jpg">
+        <div class="about-heading-content">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="bg-faded rounded p-5" style="text-align:right">
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-upper">القهوه القويه</span><span class="section-heading-lower">عن المتجر</span>
+                        </h2>
+                        <p>
+                            <br>داكنة اللون صنعت لتمنح الصباح دلاله، مستقرة في فنجان أبيض على حافة شباكٍ تحاكي برودة الشتاء بدفئها، وسماوية المطر وعذوبته بمذاقها، يراها المحبُّ دواء للهوى والحنين والذكرى، نكهة متجددّة ليس لك أن تملّ منها وإن أضحت عادة
+                            صباحية تمارسها كل يوم، فهي مفتاح الصباح الذي تَكفُّ عقارب الوقت عن الحركة دونه.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>            }
+
+
+@code{ protected override void OnInitialized()
+    {
+        LanguageChanger.RefreshRequested += refreshMe;
+    }
+
+    private void refreshMe()
+    {
+        this.StateHasChanged();
+    } }
 
